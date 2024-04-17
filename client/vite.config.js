@@ -8,6 +8,7 @@ server: {
   proxy: {
     '/api': {
       target: "http://localhost:8000",
+      // target:"",
       secure: false,
     },
   },
