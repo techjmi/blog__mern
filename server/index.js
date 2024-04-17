@@ -27,7 +27,7 @@ app.listen(PORT, () => {
     console.log(`The Server Is Running On Port ${PORT}`);
 });  
 app.use(express.static(path.join(__dirname, '/client/dist')));
-
+//if address is not found then run this below
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
