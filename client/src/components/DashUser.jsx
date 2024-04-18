@@ -16,7 +16,7 @@ const DashUser = () => {
     try {
       const res = await fetchUser();
       const data = await res.json();
-      console.log('the response is', data)
+      // console.log('the response is', data)
       if (res.ok) {
         setPost(data.users);
         if (data.users.length < 7) {

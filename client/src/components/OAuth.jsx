@@ -22,7 +22,7 @@ try {
         email:resultFromGoogle.user.email,
         photoURL:resultFromGoogle.user.photoURL
     }
-    console.log(user_info)
+    // console.log(user_info)
   const res=await GoogleLogin(user_info)
   const data= await res.json()
   if (data.success === false) {
@@ -32,7 +32,7 @@ try {
   if(res.ok){
     navigate('/')
   }
-  console.log(res)
+  // console.log(res)
 } catch (error) {
     console.log('the error while getting', error.message)
 }

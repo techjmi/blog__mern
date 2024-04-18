@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
+import { MdDashboard } from "react-icons/md";
 import {
   HiUser,
   HiArrowSmRight,
@@ -15,7 +16,7 @@ const DashSide = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tabFromUrl = urlParams.get("tab");
-    console.log(tabFromUrl);
+    // console.log(tabFromUrl);
     if (tabFromUrl) {
       setTab(tabFromUrl);
     }
@@ -25,6 +26,17 @@ const DashSide = () => {
       <Sidebar className="w-full md:w-56">
         <Sidebar.Items>
           <Sidebar.ItemGroup className="flex flex-col gap-3">
+          {currentUser.isAdmin && (
+            <Link to='/dashboard?tab=dash'>
+              <Sidebar.Item
+                active={tab === 'dash'}
+                icon={MdDashboard}
+                as='div'
+              >
+                Dashboard
+              </Sidebar.Item>
+            </Link>
+          )}
             <Link to="/dashboard?tab=profile">
               <Sidebar.Item
                 active={tab === "profile"}

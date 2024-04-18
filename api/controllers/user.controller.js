@@ -118,5 +118,15 @@ const getUsers = async (req, res, next) => {
     next(error);
   }
 };
+//get user by thier id
+const getUserById= async(req,res, next)=>{
+  try {
+   const user= await User.findById(req.params.userId)
+   const{password,...rest}= user._doc
+   res.status(200).json(rest)
+  } catch (error) {
+    next(error)
+  }
+}
 //delete user code logic
-module.exports = { updateUser, deleteUser ,signout , getUsers};
+module.exports = { updateUser, deleteUser ,signout , getUsers, getUserById};

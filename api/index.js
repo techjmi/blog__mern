@@ -8,6 +8,7 @@ app.use(cookieParser())
 const authRoutes= require('./routes/auth.routes') 
 const UserRoutes=require('./routes/user.routes')
 const PostRoutes=require('./routes/post.routes')
+const CommentRotes=require('./routes/comment.routes')
 const PORT = process.env.PORT||8000;
 const cors= require("cors")
 app.use(cors()) 
@@ -23,6 +24,7 @@ mongoDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/user', UserRoutes);
 app.use('/api/post', PostRoutes);
+app.use('/api/comment', CommentRotes);
 app.listen(PORT, () => {
     console.log(`The Server Is Running On Port ${PORT}`);
 });  

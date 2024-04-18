@@ -31,7 +31,7 @@ const DashProfile = () => {
   // console.log(imageFileUploadProgress, imageFileUploadError);
   //modal dislplaying code
   const handleModal = () => {
-    console.log("click")
+    // console.log("click")
     setShowModal(true);
   };
   //image handle code
