@@ -117,7 +117,7 @@ export const fetchAllpost= async()=>{
         console.log('the error in getting the all post is', error.message)
     }
 }
-//fetch post by user id
+//fetch post by user id to show admin dashboard
 export const fetchPost= async(id)=>{
     try {
        
@@ -131,7 +131,7 @@ export const fetchPost= async(id)=>{
         console.log('the error in getting the post is', error.message)
     }
 }
-//fetch post by passing limit
+//fetch post by passing limit and show in dashboard
 export const fetchPostLimit= async(id)=>{
     try {
         const url = `${postURL}/getposts?userId=${id}`;
@@ -187,7 +187,7 @@ export const singlePost= async(id)=>{
         console.log('the error in getting the post is', error.message)
     }
 }
-//const update logic code
+//const update post logic code
 export const updatePost= async(id,Id,data)=>{
    
     try {
@@ -231,7 +231,7 @@ export const fetchUserLimit= async()=>{
     }
 }
 //fetch more users
-export const moreUsers= async(id,startIndex)=>{
+export const moreUsers= async(startIndex)=>{
     try {
         const res = await fetch(`${userURL}/getusers?startIndex=${startIndex}`, {
             method: 'GET',
@@ -274,8 +274,6 @@ export const deleteUser= async(id)=>{
 //fetch post based on slug.... or individual post
 export const fetchSlugPost= async(postSlug)=>{
     try {
-        const url = `${postURL}/getposts?slug=${postSlug}`;
-        // console.log('url', url)
         const res = await fetch(`${postURL}/getposts?slug=${postSlug}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -289,13 +287,24 @@ export const fetchSlugPost= async(postSlug)=>{
 //call post based on their limit or set limit to 3
 export const fetchlimitPost= async()=>{
     try {
-        // const url = `${postURL}/getposts?slug=${postSlug}`;
-        // console.log('url', url)
         const res = await fetch(`${postURL}/getposts?limit=3`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
           });
         //   console.log('slug', res.data)
+          return res
+    } catch (error) {
+        console.log('the error in getting the post is', error.message)
+    }
+}
+//get post by passing search parameters
+export const fetchSearchPost= async(searchQuery)=>{
+    try {
+        const res = await fetch(`${postURL}/getposts?${searchQuery}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+          });
+          console.log('search', res)
           return res
     } catch (error) {
         console.log('the error in getting the post is', error.message)

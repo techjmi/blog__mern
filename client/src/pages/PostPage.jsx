@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchSlugPost } from "../service/api";
+import { fetchSlugPost, fetchlimitPost } from "../service/api";
 import { Button, Spinner } from 'flowbite-react';
 import AdsPart from "../components/AdsPart";
 import CommentSection from "../components/CommentSection";
+import PostCard from "../components/PostCard";
 const PostPage = () => {
   const [loading, setLoading] = useState(true);
   const [postData, setPostData] = useState(null);
   const [error, setError] = useState(false);
+  const[recentPosts, settRecentPosts]= useState([])
   const { postSlug } = useParams();
   //fetch post based on slug
   const fetchPost = async () => {
@@ -31,9 +33,23 @@ const PostPage = () => {
       console.log(error.meassage);
     }
   };
+  //fetch post based on limit condition
+  const fetchLimitPost= async()=>{
+    try {
+      const res= await fetchlimitPost()
+      if(res.ok){
+        const data= await res.json()
+        // console.log('lll', data)
+        settRecentPosts(data.posts)
+      }
+    } catch (error) {
+      console.log(error.meassage)
+    }
+  }
   useEffect(() => {
-    console.log(postSlug);
+    // console.log(postSlug);
     fetchPost();
+    fetchLimitPost()
   }, [postSlug]);
   return (
     <>
@@ -78,10 +94,10 @@ const PostPage = () => {
   
         <div className='flex flex-col justify-center items-center mb-5'>
           <h1 className='text-xl mt-5'>Recent articles</h1>
-          {/* <div className='flex flex-wrap gap-5 mt-5 justify-center'>
+          <div className='flex flex-wrap gap-5 mt-5 justify-center'>
             {recentPosts &&
               recentPosts.map((post) => <PostCard key={post._id} post={post} />)}
-          </div> */}
+          </div>
         </div>
       </main>
       )}
