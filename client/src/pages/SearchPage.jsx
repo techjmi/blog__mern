@@ -30,6 +30,7 @@ const SearchPage = () => {
             // console.log('the search post data is', data)
             setLoading(false)
             setPosts(data.posts)
+            setSidebarData('')
             if (data.posts.length === 7) {
               setShowMore(true);
             } else {
@@ -90,7 +91,7 @@ const handleChange = (e) => {
         <h1 className="text-3xl font-semibold text-center sm:border-b border-gray-500 p-3 mt-2">
           Search Post
         </h1>
-        <div className='p-7 flex flex-wrap gap-4'>
+        <div className='p-7 flex flex-wrap gap-4 items-center justify-center'>
           {!loading && posts.length === 0 && (
             <p className='text-xl text-gray-500'>No posts found.</p>
           )}
