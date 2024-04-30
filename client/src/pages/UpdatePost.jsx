@@ -18,15 +18,17 @@ const UpdatePost = () => {
   const navigate= useNavigate()
   const {postId}= useParams()
   const { currentUser } = useSelector((state) => state.user);
+  console.log("id title", formData.title, formData._id)
 //fetch single post
 const fetchPost= async()=>{
     try {
-        const res= await(singlePost(postId))
-        console.log(res)
+        const res= await singlePost(postId)
+        // console.log(res)
         const data= await res.json()
-        setFormData(data)
+        console.log('the form data is ',data)
+        setFormData(data.posts[0])
         if (!res.ok) {
-            console.log(data.message);
+            // console.log(data.message);
             setPublishError(data.message);
             return;
           }
@@ -35,7 +37,7 @@ const fetchPost= async()=>{
             setFormData(data.posts[0]);
           }
     } catch (error) {
-        
+      console.log('the error in updating the post is', error.message)  
     }
 }
 useEffect(()=>{
@@ -43,7 +45,7 @@ useEffect(()=>{
 },[postId])
   //image uplaod function
   const hanleUploadImage = async () => {
-    console.log('uplaod cliecked')
+    // console.log('uplaod cliecked')
     try {
       if (!file) {
         setImageUploadError('Please select an image');
@@ -84,6 +86,7 @@ useEffect(()=>{
   const handleSubmit = async(e) => {
     e.preventDefault()
     // console.log(formData);
+    console.log(formData._id, currentUser._id,)
     try {
       const res= await updatePost(formData._id, currentUser._id,formData)
       const data= await res.json()
@@ -102,7 +105,7 @@ useEffect(()=>{
     }
   };
   //
-  console.log("form data", formData)
+  // console.log("form data", formData)
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
@@ -121,7 +124,7 @@ useEffect(()=>{
           />
           <Select
             onChange={(e) =>{
-              console.log('Selected category:', e.target.value);
+              // console.log('Selected category:', e.target.value);
               setFormData({ ...formData, category: e.target.value })
             }}
             value={formData.category}

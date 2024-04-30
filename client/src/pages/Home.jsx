@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react'
 // import { fetchAllpost } from '../service/api';
 import PostCard from '../components/PostCard';
 import AdsPart from './AdsPart';
-import { fetchAllpost } from '../service/api';
+import { AllmorePosts, fetchAllpost, morePosts } from '../service/api';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [showMore, setShowMore] = useState(true);
+  //get all the post by irrespective of user
   const fetchPost= async()=>{
     try {
       const res= await fetchAllpost()
@@ -14,11 +16,31 @@ const Home = () => {
         const data= await res.json()
         // console.log(data)
         setPosts(data.posts)
+        if (data.posts.length < 7) {
+          setShowMore(false);
+        }
       }
     } catch (error) {
       
     }
   }
+  //handle show more function
+  const startIndex = posts.length;
+  const handleShowMore = async () => {
+    // console.log('clicked')
+    try {
+      const res = await AllmorePosts(startIndex);
+      const data = await res.json();
+      if (res.ok) {
+        setPosts((prev) => [...prev, ...data.posts]);
+        if (data.posts.length < 7) {
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   useEffect(()=>{
     fetchPost()
   },[])
@@ -38,6 +60,14 @@ const Home = () => {
               posts.map((post) => <PostCard key={post._id} post={post} />)}
           </div>
         </div>
+        {showMore && (
+            <button
+              onClick={handleShowMore}
+              className="w-full text-teal-500 self-center text-sm py-7"
+            >
+              Show more
+            </button>
+          )}
     </div>
   )
 }

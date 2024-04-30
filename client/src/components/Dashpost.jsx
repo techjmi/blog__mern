@@ -137,7 +137,7 @@ const Dashpost = () => {
             >
               Show more
             </button>
-          )}
+          )}  
         </>
       ) : (
         <p>You have no posts yet!</p>

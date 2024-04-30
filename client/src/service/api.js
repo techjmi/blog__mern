@@ -117,6 +117,19 @@ export const fetchAllpost= async()=>{
         console.log('the error in getting the all post is', error.message)
     }
 }
+//fetch more post by all users
+export const AllmorePosts= async(startIndex)=>{
+    try {
+        const res = await fetch(`${postURL}/getposts?startIndex=${startIndex}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+          });
+        //   console.log(res)
+          return res
+    } catch (error) {
+        console.log('the error in getting the post is', error.message)
+    }
+}
 //fetch post by user id to show admin dashboard
 export const fetchPost= async(id)=>{
     try {
@@ -176,12 +189,13 @@ export const deletePosts= async(id,Id)=>{
 }
 //fetch single  post by id to update it 
 export const singlePost= async(id)=>{
+    console.log('single', id)
     try {
         const res = await fetch(`${postURL}/getposts?postId=${id}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
           });
-        //   console.log(res)
+          console.log(res)
           return res
     } catch (error) {
         console.log('the error in getting the post is', error.message)
@@ -189,7 +203,7 @@ export const singlePost= async(id)=>{
 }
 //const update post logic code
 export const updatePost= async(id,Id,data)=>{
-   
+   console.log(id, Id)
     try {
         const res = await fetch(`${postURL}/updatepost/${id}/${Id}`, {
             method: 'PUT',
