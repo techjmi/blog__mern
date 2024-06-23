@@ -33,7 +33,7 @@ const Login = () => {
       dispatch(signInStart())
       const res= await postLogin(formData)
       const data = await res.json();
-      console.log(data)
+      // console.log(data)
       if (data.success === false) {
         dispatch(signInFailure(data.message))
         // return setErrorMessage(data.message);

@@ -54,7 +54,7 @@ export const updateData=async(id, data)=>{
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),})
-        console.log('update res',res)
+        // console.log('update res',res)
         return res
     } catch (error) {
         console.log('the error while updating the data is', error.message)
@@ -68,7 +68,7 @@ export const deleteData = async (id) => {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         });
-        console.log('delete', res);
+        // console.log('delete', res);
         return res; // Return the response object
     } catch (error) {
         console.log('the error while deleting the data is', error.message);
@@ -105,8 +105,6 @@ export const postBlog=async(data)=>{
 //fetch all post
 export const fetchAllpost= async()=>{
     try {
-        const url = `${postURL}/getposts`;
-        console.log('api url',url)
         const res = await fetch(`${postURL}/getposts`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -147,8 +145,6 @@ export const fetchPost= async(id)=>{
 //fetch post by passing limit and show in dashboard
 export const fetchPostLimit= async(id)=>{
     try {
-        const url = `${postURL}/getposts?userId=${id}`;
-        console.log(url)
         const res = await fetch(`${postURL}/getposts?limit=5`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -180,7 +176,7 @@ export const deletePosts= async(id,Id)=>{
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         });
-        console.log('delete', res);
+        // console.log('delete', res);
         return res; // Return the response object
     } catch (error) {
         console.log('the error while deleting the data is', error.message);
@@ -189,13 +185,13 @@ export const deletePosts= async(id,Id)=>{
 }
 //fetch single  post by id to update it 
 export const singlePost= async(id)=>{
-    console.log('single', id)
+    // console.log('single', id)
     try {
         const res = await fetch(`${postURL}/getposts?postId=${id}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
           });
-          console.log(res)
+        //   console.log(res)
           return res
     } catch (error) {
         console.log('the error in getting the post is', error.message)
@@ -203,7 +199,7 @@ export const singlePost= async(id)=>{
 }
 //const update post logic code
 export const updatePost= async(id,Id,data)=>{
-   console.log(id, Id)
+//    console.log(id, Id)
     try {
         const res = await fetch(`${postURL}/updatepost/${id}/${Id}`, {
             method: 'PUT',
@@ -278,7 +274,7 @@ export const deleteUser= async(id)=>{
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         });
-        console.log('delete', res);
+        // console.log('delete', res);
         return res; // Return the response object
     } catch (error) {
         console.log('the error while deleting the data is', error.message);
@@ -318,7 +314,7 @@ export const fetchSearchPost= async(searchQuery)=>{
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
           });
-          console.log('search', res)
+        //   console.log('search', res)
           return res
     } catch (error) {
         console.log('the error in getting the post is', error.message)
@@ -369,7 +365,7 @@ export const editComment= async(commentId,data)=>{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         })
-        console.log('delete', res);
+        // console.log('delete', res);
         return res
     } catch (error) {
         console.log('The Error While Getting The Comment', error.message)
@@ -384,7 +380,7 @@ export const deleteComment= async(commentId)=>{
             headers: { 'Content-Type': 'application/json' },
             // body: JSON.stringify(data),
         })
-        console.log('delete', res);
+        // console.log('delete', res);
         return res
     } catch (error) {
         console.log('The Error While Deleting The Comment', error.message)

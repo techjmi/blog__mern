@@ -8,7 +8,7 @@ const SearchPage = () => {
     const [sidebarData, setSidebarData] = useState({
         searchTerm: '',
       });
-      console.log(sidebarData)
+      // console.log(sidebarData)
       const [posts, setPosts] = useState([]);
       const [loading, setLoading]= useState(false)
       const[showMore, setShowMore]= useState(false)
@@ -99,14 +99,6 @@ const handleChange = (e) => {
           {!loading &&
             posts &&
             posts.map((post) => <PostCard key={post._id} post={post} />)}
-          {/* {showMore && (
-            <button
-              onClick={handleShowMore}
-              className='text-teal-500 text-lg hover:underline p-7 w-full'
-            >
-              Show More
-            </button>
-          )} */}
         </div>
       </div>
     </div>

@@ -1,10 +1,22 @@
 import { Avatar, Button, Dropdown } from 'flowbite-react'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import { signOutUser } from '../service/api'
+import { signOutSccess } from '../redux/user/userSlice'
 const UserProfile = () => {
     const {currentUser}=useSelector((state)=>state.user)
+    const dispatch= useDispatch()
+    const handleLogout=async()=>{
+      const res=await signOutUser()
+      const data= await res.json()
+      if(!res.ok){
+        console.log(data.message);
+      }
+      else{
+        dispatch(signOutSccess())
+      }
+     }
   return (
     <div>
         {currentUser ? (
@@ -25,7 +37,7 @@ const UserProfile = () => {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            {/* <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item> */}
+            <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to='/sign-in'>

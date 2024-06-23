@@ -17,7 +17,7 @@ const CreatePost = () => {
   const navigate= useNavigate()
   //image uplaod function
   const hanleUploadImage = async () => {
-    console.log('uplaod cliecked')
+    // console.log('uplaod cliecked')
     try {
       if (!file) {
         setImageUploadError('Please select an image');
@@ -57,7 +57,7 @@ const CreatePost = () => {
   //handle submit function
   const handleSubmit = async(e) => {
     e.preventDefault()
-    console.log(formData);
+    // console.log(formData);
     try {
       const res= await postBlog(formData)
       const data= await res.json()
@@ -76,7 +76,7 @@ const CreatePost = () => {
     }
   };
   //
-  console.log("form data", formData)
+  // console.log("form data", formData)
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
@@ -94,7 +94,7 @@ const CreatePost = () => {
           />
           <Select
             onChange={(e) =>{
-              console.log('Selected category:', e.target.value);
+              // console.log('Selected category:', e.target.value);
               setFormData({ ...formData, category: e.target.value })
             }}
           >

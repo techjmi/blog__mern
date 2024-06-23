@@ -67,7 +67,7 @@ const Dashpost = () => {
   useEffect(() => {
     getPosts();
   }, [id]);
-  console.log("the post is", post);
+  // console.log("the post is", post);
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar  scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 ">
       {currentUser.isAdmin && post.length > 0 ? (

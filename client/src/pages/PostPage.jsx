@@ -17,7 +17,7 @@ const PostPage = () => {
       setLoading(true);
       const res = await fetchSlugPost(postSlug);
       const data = await res.json();
-      console.log("the slug", data);
+      // console.log("the slug", data);
       if (!res.ok) {
         setError(true);
         setLoading(false);

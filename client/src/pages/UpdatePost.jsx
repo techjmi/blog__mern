@@ -18,14 +18,14 @@ const UpdatePost = () => {
   const navigate= useNavigate()
   const {postId}= useParams()
   const { currentUser } = useSelector((state) => state.user);
-  console.log("id title", formData.title, formData._id)
+  // console.log("id title", formData.title, formData._id)
 //fetch single post
 const fetchPost= async()=>{
     try {
         const res= await singlePost(postId)
         // console.log(res)
         const data= await res.json()
-        console.log('the form data is ',data)
+        // console.log('the form data is ',data)
         setFormData(data.posts[0])
         if (!res.ok) {
             // console.log(data.message);
@@ -86,7 +86,7 @@ useEffect(()=>{
   const handleSubmit = async(e) => {
     e.preventDefault()
     // console.log(formData);
-    console.log(formData._id, currentUser._id,)
+    // console.log(formData._id, currentUser._id,)
     try {
       const res= await updatePost(formData._id, currentUser._id,formData)
       const data= await res.json()
