@@ -54,7 +54,7 @@ const likeComment= async(req, res, next)=>{
 }
 //edit comment
 const editComment = async (req, res, next) => {
-    console.log('edi called')
+    // console.log('edi called')
     try {
       const comment = await Comment.findById(req.params.commentId);
       if (!comment) {
@@ -78,7 +78,7 @@ const editComment = async (req, res, next) => {
     }
   };
   const deleteComment = async (req, res, next) => {
-    console.log('edi called')
+    // console.log('edi called')
     try {
       const comment = await Comment.findById(req.params.commentId);
       if (!comment) {

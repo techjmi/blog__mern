@@ -5,7 +5,7 @@ const { errorHandler } = require("../utils/error");
 
 
 const createPost=async(req,res, next)=>{
-    console.log('the user',req.user)
+    // console.log('the user',req.user)
     if (!req.user.isAdmin) {
         return next(errorHandler(403, 'You are not allowed to create a post'));
       }
@@ -91,23 +91,42 @@ const deletePosts= async(req, res, next)=>{
   }
 }
 //update post
-const updatePost= async(req,res, next)=>{
-  if(!req.user.isAdmin||req.user.id!==req.params.userId){
-    return next(errorHandler(403,'You are not allowed to update this posts'))
-  }
+
+const updatePost = async (req, res, next) => {
   try {
-    const updatePost= await Post.findByIdAndUpdate(req.params.postId,{
-      $set:{
-        title:req.body.title,
-        content:req.body.content,
-        category:req.body.category,
-        image:req.body.image
-      }
-    },{new:true})
-    res.status(200).json(updatePost)
+    // Ensure user is authorized to update the post
+    if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+      return next(errorHandler(403, 'You are not allowed to update this post'));
+    }
+// console.log(req.body.title,req.body.content,req.body.category,req.body.imagecl)
+    // Check if all required fields are provided in the request body
+    if (!req.body.title || !req.body.content || !req.body.category || !req.body.image) {
+      return next(errorHandler(400, 'Please provide title, content, category, and image'));
+    }
+ 
+    // Update the post
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.postId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          category: req.body.category,
+          image: req.body.image
+        }
+      },
+      { new: true }
+    );
+
+    if (!updatedPost) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+    // Send the updated post as response
+    res.status(200).json(updatedPost);
   } catch (error) {
-    next(error)
+    // Handle any errors
+    next(error);
   }
-}
+};
 
 module.exports={createPost, getposts, deletePosts,updatePost}

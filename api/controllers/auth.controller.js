@@ -57,7 +57,7 @@ const signin = async (req, res, next) => {
       { id: validUser._id, isAdmin: validUser.isAdmin },
       process.env.JWT_SECRET
     );
-    console.log('toekn', token)
+    // console.log('toekn', token)
     const { password: pass, ...rest } = validUser._doc;
     res
       .status(200)
