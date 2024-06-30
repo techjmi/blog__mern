@@ -1,3 +1,5 @@
+
+// Home.jsx
 import React, { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 import AdsPart from './AdsPart';
@@ -7,6 +9,9 @@ import { Spinner } from 'flowbite-react';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [showMore, setShowMore] = useState(true);
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +23,8 @@ const Home = () => {
       if (res.ok) {
         const data = await res.json();
         setPosts(data.posts);
+        setFilteredPosts(data.posts);
+        setCategories([...new Set(data.posts.map(post => post.category))]);
         setLoading(false);
         if (data.posts.length < 7) {
           setShowMore(false);
@@ -37,6 +44,8 @@ const Home = () => {
       const data = await res.json();
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
+        setFilteredPosts((prev) => [...prev, ...data.posts]);
+        setCategories([...new Set([...categories, ...data.posts.map(post => post.category)])]);
         if (data.posts.length < 7) {
           setShowMore(false);
         }
@@ -50,9 +59,17 @@ const Home = () => {
     fetchPost();
   }, []);
 
+  useEffect(() => {
+    if (selectedCategory) {
+      setFilteredPosts(posts.filter(post => post.category === selectedCategory));
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [selectedCategory, posts]);
+
   return (
     <div>
-      <CategoryNav posts={posts} />
+      <CategoryNav categories={categories} onSelectCategory={setSelectedCategory} />
       <div className="flex flex-col gap-4 p-12 px-3 max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold lg:text-6xl mt-5 text-center">Welcome to my blog</h1>
         <p className="md:mx-9 mx-4 text-justify">
@@ -68,7 +85,7 @@ const Home = () => {
           {loading ? (
             <Spinner />
           ) : (
-            posts && posts.map((post) => <PostCard key={post._id} post={post} />)
+            filteredPosts.map((post) => <PostCard key={post._id} post={post} />)
           )}
         </div>
       </div>

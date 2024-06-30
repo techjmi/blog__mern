@@ -129,8 +129,15 @@ useEffect(()=>{
             }}
             value={formData.category}
           >
-            <option value="uncategorized">Select a category</option>
-            <option value="Technology">Technoloy</option>
+           <option value="uncategorized">Select a category</option>
+            <option value="General">General</option>
+            <option value="CSS">CSS</option>
+            <option value="HMTL">HTML</option>
+            <option value="JavaScrip">JavaScript</option>
+            <option value="ReactJs">ReactJs</option>
+            <option value="React-Native">React-Native</option>
+            <option value="Database">Database</option>
+            <option value="NodeJs">NodeJs</option>
             <option value="Entertainmet">Entertainment</option>
             <option value="Sports">Sports</option>
           </Select>
