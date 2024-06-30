@@ -13,7 +13,7 @@ const AdsPart = () => {
           className="rounded-tl-xl rounded-bl-none self-auto relative w-[50%] mx-auto"
         >
           <a
-            href="https://musical-mooncake-8fc409.netlify.app/"
+            href="https://shamim-portfolio-u1yp.onrender.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
