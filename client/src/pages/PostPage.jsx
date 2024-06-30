@@ -76,23 +76,25 @@ const PostPage = () => {
   return (
     <>
       {loading && (
-        <div className="flex justify-center items-center min-h-screen">
-          <Spinner size="xl" />
+        <div className="flex justify-center items-center min-h-screen align-middle mt-[20%]">
+          {/* <Spinner size="xl" /> */}
+          <div className="loader"></div>
         </div>
+       
       )}
       {!loading && (
-        <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
+        <main className="p-3 flex flex-col md:max-w-6xl w-full mx-auto min-h-screen">
           <div className="fixed bottom-4 right-4 md:right-8 w-12 h-12 cursor-pointer">
           <CircularProgressbarWithChildren
       strokeWidth={9}
       value={scrollPercent}
     >
-      <div className="text-center items-center flex justify-center size-6 text-black cursor-pointer">
+      <div className="text-center items-center flex justify-center size-6  cursor-pointer">
         <FaArrowUp className="" onClick={scrollToTop} />
       </div>
     </CircularProgressbarWithChildren>
           </div>
-          <h1 className="text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl">
+          <h1 className="text-xl md:text-3xl mt-10 p-3 text-center font-serif md:max-w-2xl w-full md:mx-auto mx-0 lg:text-4xl">
             {postData && postData.title}
           </h1>
           <img

@@ -61,15 +61,15 @@ const Header = () => {
         <AiOutlineSearch onClick={()=>setShowSearchInput(true)}/>
         </Link>
       </Button>
-      <div className="flex gap-2 md:order-2">
-        <Button
-          className="md:w-12 md:h-10 sm:inline sm:h-5"
-          color="gray"
-          pill
+      <div className="flex gap-2 md:order-2 justify-center items-center">
+        <button
+          className="md:w-8 md:h-8  sm:inline sm:h-5 hover:bg-transparent  flex justify-center items-center"
+          // color="gray"
+          // pill
           onClick={() => dispatch(toggleTheme())}
         >
           {theme === "light" ? <MdOutlineLightMode /> : <MdDarkMode />}
-        </Button>
+        </button>
         <UserProfile />
         <Navbar.Toggle />
       </div>
