@@ -15,13 +15,15 @@ import CreatePost from './pages/CreatePost'
 import UpdatePost from './pages/UpdatePost'
 import PostPage from './pages/PostPage'
 import SearchPage from './pages/SearchPage'
+import NavBar from './components/NavBar'
 
 function App() {
   
 
   return (
    <BrowserRouter>
-   <Header />
+   {/* <Header /> */}
+   <NavBar />
    <Routes>
     <Route path='/' element={<Home />} />
     <Route path='/sign-in' element={<Login />} />

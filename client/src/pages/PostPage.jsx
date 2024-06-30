@@ -81,8 +81,8 @@ const PostPage = () => {
         </div>
       )}
       {!loading && (
-        <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen w-full">
-          <div className="fixed bottom-4 right-7 w-12 h-12 cursor-pointer">
+        <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
+          <div className="fixed bottom-4 right-4 md:right-8 w-12 h-12 cursor-pointer">
           <CircularProgressbarWithChildren
       strokeWidth={9}
       value={scrollPercent}
