@@ -81,7 +81,7 @@ const PostPage = () => {
         </div>
       )}
       {!loading && (
-        <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
+        <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen w-full">
           <div className="fixed bottom-4 right-7 w-12 h-12 cursor-pointer">
           <CircularProgressbarWithChildren
       strokeWidth={9}
