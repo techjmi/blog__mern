@@ -4,6 +4,11 @@ Welcome to our Blog Application built using the MERN stack and React Flowbite!
 ## Overview
 This application allows users to read and comment on blog posts. Additionally, users can like comments, enhancing engagement and interaction within the community. We've also included an admin dashboard where administrators can manage posts and users efficiently.
 
+## Screenshot
+
+![Project Screenshot](https://github.com/techjmi/blog__mern/blob/main/client/src/assets/Projects/blog.png)
+![Project Screenshot](https://github.com/techjmi/blog__mern/blob/main/client/src/assets/Projects/Screenshot%202024-07-04%20024748.png)
+
 ## Features
 - **Read Blogs:** Users can read informative blog posts on various topics.
 - **Commenting:** Users can share their thoughts and engage in discussions by commenting on blog posts.
