@@ -55,8 +55,8 @@ const Home = () => {
   return (
     <div>
       <div className="flex flex-col gap-4 p-12 px-3 max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold lg:text-6xl mt-5 text-center">
-          Welcome to my blog
+        <h1 className="text-xl md:text-3xl font-bold lg:text-6xl mt-5 text-center text-yellow-400">
+          Welcome To My Blog
         </h1>
         <p className="md:mx-9 mx-4 text-justify">
           Are you interested in learning web development? Explore a variety of

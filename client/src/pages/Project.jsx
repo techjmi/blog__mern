@@ -29,7 +29,7 @@ const Project = () => {
     <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center text-yellow-400">
       My Recent <span className="text-purple-500">Works</span>
     </h1>
-    <p className="text-white text-center mb-8">
+    <p className="text-center mb-8">
       Here are a few projects I've worked on recently.
     </p>
     <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 backdrop-blur-md">
