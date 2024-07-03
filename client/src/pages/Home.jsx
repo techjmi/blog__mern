@@ -1,21 +1,17 @@
-
 // Home.jsx
-import React, { useEffect, useState } from 'react';
-import PostCard from '../components/PostCard';
-import AdsPart from './AdsPart';
-import { AllmorePosts, fetchAllpost } from '../service/api';
-import CategoryNav from '../components/CategoryNav';
-import { Spinner } from 'flowbite-react';
+import React, { useEffect, useState } from "react";
+import PostCard from "../components/PostCard";
+import AdsPart from "./AdsPart";
+import { AllmorePosts, fetchAllpost } from "../service/api";
+import { Spinner } from "flowbite-react";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const [showMore, setShowMore] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  // Get all the posts irrespective of user
+  // Get all the posts
   const fetchPost = async () => {
     setLoading(true);
     try {
@@ -23,8 +19,6 @@ const Home = () => {
       if (res.ok) {
         const data = await res.json();
         setPosts(data.posts);
-        setFilteredPosts(data.posts);
-        setCategories([...new Set(data.posts.map(post => post.category))]);
         setLoading(false);
         if (data.posts.length < 7) {
           setShowMore(false);
@@ -45,7 +39,6 @@ const Home = () => {
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
         setFilteredPosts((prev) => [...prev, ...data.posts]);
-        setCategories([...new Set([...categories, ...data.posts.map(post => post.category)])]);
         if (data.posts.length < 7) {
           setShowMore(false);
         }
@@ -59,33 +52,32 @@ const Home = () => {
     fetchPost();
   }, []);
 
-  useEffect(() => {
-    if (selectedCategory) {
-      setFilteredPosts(posts.filter(post => post.category === selectedCategory));
-    } else {
-      setFilteredPosts(posts);
-    }
-  }, [selectedCategory, posts]);
-
   return (
     <div>
-      <CategoryNav categories={categories} onSelectCategory={setSelectedCategory} />
       <div className="flex flex-col gap-4 p-12 px-3 max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold lg:text-6xl mt-5 text-center">Welcome to my blog</h1>
+        <h1 className="text-3xl font-bold lg:text-6xl mt-5 text-center">
+          Welcome to my blog
+        </h1>
         <p className="md:mx-9 mx-4 text-justify">
-          Are you interested in learning web development? Explore a variety of articles and tutorials covering web development, software engineering, and programming languages. Click here to browse my portfolio and delve into my GitHub and projects for hands-on learning. Contact me to get started!
+          Are you interested in learning web development? Explore a variety of
+          articles and tutorials covering web development, software engineering,
+          and programming languages. Click here to browse my portfolio and delve
+          into my GitHub and projects for hands-on learning. Contact me to get
+          started!
         </p>
       </div>
       <div className="md:w-3/6 md:mx-auto w-full mb-5 p-4">
         <AdsPart />
       </div>
       <div className="flex flex-col justify-center items-center mb-5 p-4">
-        <h1 className="text-2xl font-semibold text-center">See Recent Articles</h1>
+        <h1 className="text-2xl font-semibold text-center">
+          See Recent Articles
+        </h1>
         <div className="flex flex-wrap gap-5 mt-5 justify-center">
           {loading ? (
             <Spinner />
           ) : (
-            filteredPosts.map((post) => <PostCard key={post._id} post={post} />)
+            posts.map((post) => <PostCard key={post._id} post={post} />)
           )}
         </div>
       </div>

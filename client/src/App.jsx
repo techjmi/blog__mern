@@ -15,15 +15,27 @@ import CreatePost from './pages/CreatePost'
 import UpdatePost from './pages/UpdatePost'
 import PostPage from './pages/PostPage'
 import SearchPage from './pages/SearchPage'
-import NavBar from './components/NavBar'
+import { Button } from 'flowbite-react'
+import { toggleTheme } from './redux/theme/themeSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { MdDarkMode, MdOutlineLightMode } from 'react-icons/md'
+// import NavBar from './components/NavBar
 
 function App() {
-  
+  const dispatch= useDispatch()
+  const { theme } = useSelector((state) => state.theme);
 
   return (
    <BrowserRouter>
-   <Header />
-   {/* <NavBar /> */}
+    <Header />
+   <>
+   <button
+      className="md:hidden inline fixed top-22 z-40 backdrop-blur-xl bg-slate-300 text-black right-3 rounded-full p-3 shadow-lg focus:outline-none"
+      onClick={() => dispatch(toggleTheme())}
+    >
+      {theme === "light" ? <MdOutlineLightMode size='24' /> : <MdDarkMode size='24' />}
+    </button>
+   </>
    <Routes>
     <Route path='/' element={<Home />} />
     <Route path='/sign-in' element={<Login />} />

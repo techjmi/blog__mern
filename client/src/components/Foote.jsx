@@ -59,14 +59,41 @@ export default function FooterCom() {
             by="Shamim"
             year={new Date().getFullYear()}
           />
-          <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href='https://www.facebook.com/profile.php?id=100047398065321' icon={BsFacebook}/>
-            <Footer.Icon href='https://www.instagram.com/mernvibes/' icon={BsInstagram}/>
-            <Footer.Icon href='#' icon={BsTwitter}/>
-            <Footer.Icon href='https://github.com/techjmi' icon={BsGithub}/>
-            <Footer.Icon href='#' icon={BsDribbble}/>
+        <div className="flex gap-6 sm:mt-0 mt-4 justify-center items-center">
+  <a
+    href="https://www.facebook.com/profile.php?id=100047398065321"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 hover:shadow-xl transition duration-300 transform hover:scale-110"
+  >
+    <BsFacebook size='1.5em'/>
+  </a>
+  <a
+    href="https://www.instagram.com/mernvibes/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-pink-600 text-white shadow-lg hover:bg-pink-700 hover:shadow-xl transition duration-300 transform hover:scale-110"
+  >
+    <BsInstagram size='1.5em'/>
+  </a>
+  <a
+    href="https://github.com/techjmi"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-800 text-white shadow-lg hover:bg-gray-900 hover:shadow-xl transition duration-300 transform hover:scale-110"
+  >
+    <BsGithub size='1.5em'/>
+  </a>
+  <a
+    href="https://shamim-portfolio-u1yp.onrender.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 hover:shadow-xl transition duration-300 transform hover:scale-110"
+  >
+    <BsDribbble size='1.5em'/>
+  </a>
+</div>
 
-          </div>
         </div>
       </div>
     </Footer>

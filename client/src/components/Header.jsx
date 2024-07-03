@@ -35,7 +35,7 @@ const Header = () => {
     }
   }, [location.search]);
   return (
-    <Navbar className="border-b-2">
+    <Navbar className="border-b-2 w-full px-1 md:px-6">
       <Link
         to="/"
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
@@ -62,13 +62,13 @@ const Header = () => {
         </Link>
       </Button>
       <div className="flex gap-2 md:order-2 justify-center items-center">
-        <button
-          className="md:w-8 md:h-8  sm:inline sm:h-5 hover:bg-transparent  flex justify-center items-center"
-          // color="gray"
-          // pill
+        <button onFocus='none'
+          className="hidden md:inline  text-black right-3 rounded-full p-2 hover:bg-transparent hover:bg-slate-400 focus:outline-none"
+          color="gray"
+          pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === "light" ? <MdOutlineLightMode /> : <MdDarkMode />}
+          {theme === "light" ? <MdOutlineLightMode size='24'/> : <MdDarkMode size='24' color="white"/>}
         </button>
         <UserProfile />
         <Navbar.Toggle />
